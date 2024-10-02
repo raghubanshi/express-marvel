@@ -2,7 +2,7 @@
 
 First clone it to your local machine by running
 ```
-git clone https://github.com/hatchways-community/capstone-project-two-2a4180eb04d3405b84bc41dd8cbef8de
+git clone https://github.com/raghubanshi/express-marvel.git
 cd backend-marvel-comics
 ```
 
