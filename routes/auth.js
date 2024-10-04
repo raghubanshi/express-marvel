@@ -4,6 +4,7 @@ const User = require("../models/user");
 const express = require("express");
 const router = new express.Router();
 const { createToken } = require("../helpers/tokens");
+const { ExpressError } = require("../expressError");
 
 /** POST /auth/token:  { username, password } => { token }
  *
@@ -34,9 +35,15 @@ router.post("/token", async function (req, res, next) {
 
 router.post("/register", async function (req, res, next) {
     try {
-        const newUser = await User.register({ ...req.body });
-        const token = createToken(newUser);
-        return res.status(201).json({ token });
+        if (req.body.password.length > 4) {
+            const newUser = await User.register({ ...req.body });
+            const token = createToken(newUser);
+            return res.status(201).json({ token });
+        }
+        else {
+            throw new ExpressError("Password should be greater than 4 characters.", 403)
+        }
+
     } catch (err) {
         return next(err);
     }
