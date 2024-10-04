@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const {
     BadRequestError,
     UnauthorizedError,
+    NotFoundError
 } = require("../expressError");
 
 const { BCRYPT_WORK_FACTOR } = require("../config.js");
